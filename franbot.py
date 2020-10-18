@@ -45,10 +45,34 @@ async def sleepy_hall_of_fame(ctx):
         'uhh que dificil está levantarse de la cama',
         'me voy a merendar y vuelvo',
         'que partida de mierda que estoy teniendo',
-        'como cuesta levantarse chee'
+        'estoy on en twitch padre',
+        'como cuesta levantarse chee',
+        'que paja numerico boludo',
+        'pero mama no ves que no estoy gritando',
+        'na man sos un mogolico',
+        'que buena que esta esa minusa',
+        'que ganas de tener plata y ser fachero la puta madre',
+        'voy a dejar esta materia de mierda'
     ]
     response = choice(quotes)
     await ctx.send(response)
 
+@fran.command(name='animes', help='Te tiramo un anime random para que disfrutes de la vida, con algunas'
+                                  'observaciones o consideraciones para que lo veas')
+async def animes_que_tenes_que_ver(ctx):
+    #No se como pingo se hace para poner solo una comilla xd
+    quotes = [
+        "Naruto y Naruto Shippuden (sin relleno miralo)",
+        "Fullmetal Alchemist (el brotherhood es la misma hisotria)",
+        "Death Note (para sleepyfran de los mejores animes de la historia)",
+        "Haikyuu (si te gusta el voley)",
+        "Evangelion (si entendes el final te mereces graduarte en harvard)",
+        "Shingeki no kyojin (titanes contra humanos, epico)",
+        "One punch man (realmente no tiene desperdicio y saitama es god)",
+        "Avatar (no es un anime en si, pero no verlo es un pecado capital)"
+        "Sword Art Online (es una simulacion en un anime, imaginate las posibilidades)"
+    ]
+    randanime = choice(quotes)
+    await ctx.send(randanime)
 
 fran.run(TOKEN)
