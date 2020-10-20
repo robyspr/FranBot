@@ -15,6 +15,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 fran = commands.Bot(command_prefix="fran ", description="Soy frantástico", intents=intents)
 
+#EVENTS
 @fran.event
 async def on_member_join(member):
     print(f'{member.name} has joined a server.')
@@ -34,7 +35,7 @@ async def on_message(mssg):
         await mssg.channel.send(response)
     await fran.process_commands(mssg)
 
-
+#COMMANDS
 @fran.command(help='Tiro los mejores pls memes de la historia papA')
 async def memes(ctx):
     quotes = [
