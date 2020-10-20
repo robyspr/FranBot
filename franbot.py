@@ -1,25 +1,27 @@
 import os
 import discord as ds
+import youtube_dl as yt
 from random import choice
 
 from discord.ext import commands
 from dotenv import load_dotenv
 
+#IMPORTANTE: para que el bot pueda leer la actividad de los members
 intents = ds.Intents.default()
 intents.members = True
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-fran = commands.Bot(command_prefix="fran ", description="Soy frantástico")
+fran = commands.Bot(command_prefix="fran ", description="Soy frantástico", intents=intents)
 
 @fran.event
 async def on_member_join(member):
-    channels = member.guild.text_channels
-    print(channels)
-#    await channel.send(
-#        f'Que onda {member.name}? Bienvenido al server.\n El prefijo de este bot es "fran". Cualquier cosa que necesites llamame bb. <3'
-#    )
+    print(f'{member.name} has joined a server.')
+
+@fran.event
+async def on_member_remove(member):
+    print(f'{member} has left the server.')
 
 
 @fran.event
@@ -33,8 +35,8 @@ async def on_message(mssg):
     await fran.process_commands(mssg)
 
 
-@fran.command(name='memes', help='Tiro los mejores pls memes de la historia papA')
-async def fran_service(ctx):
+@fran.command(help='Tiro los mejores pls memes de la historia papA')
+async def memes(ctx):
     quotes = [
         'pls ohno sleepyfran',
         'pls whodidthis chowfran',
@@ -45,22 +47,20 @@ async def fran_service(ctx):
     await ctx.send(response)
 
 
-@fran.command(name='sleepyfran', help='Salen unas frases icónicas del sleepy con papas')
+@fran.command(aliases=['sleepyfran', 'sleepy'], help='Salen unas frases icónicas del sleepy con papas')
 async def sleepy_hall_of_fame(ctx):
     quotes = [
         'uhh que dificil está levantarse de la cama',
-        'me voy a merendar y vuelvo',
+        'me voy a merendar y vuelvo * nunca vuelve *',
         'que partida de mierda que estoy teniendo',
         'como cuesta levantarse chee'
     ]
     response = choice(quotes)
     await ctx.send(response)
 
-
 @fran.command(name='fumeteo', help='Fran te da una mano para llegar al cielo')
-async def fumeteo_time(ctx):
+async def fumeteo_time(ctx, url):
     response = "https://www.youtube.com/watch?v=Wv0OrskppsY"
     await ctx.send(response)
 
 fran.run(TOKEN)
-
