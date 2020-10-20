@@ -21,12 +21,17 @@ async def on_member_join(member):
 #        f'Que onda {member.name}? Bienvenido al server.\n El prefijo de este bot es "fran". Cualquier cosa que necesites llamame bb. <3'
 #    )
 
+
 @fran.event
 async def on_message(mssg):
     if mssg.content == "kill me":
         response = 'MAY DAY: se necesita un "fumeteo distorsionado" para este user'
         await mssg.channel.send(response)
+    if mssg.content == "pls":
+        response = 'Deje al dankmemer de una vez rey/reyna'
+        await mssg.channel.send(response)
     await fran.process_commands(mssg)
+
 
 @fran.command(name='memes', help='Tiro los mejores pls memes de la historia papA')
 async def fran_service(ctx):
@@ -38,6 +43,7 @@ async def fran_service(ctx):
     ]
     response = choice(quotes)
     await ctx.send(response)
+
 
 @fran.command(name='sleepyfran', help='Salen unas frases icónicas del sleepy con papas')
 async def sleepy_hall_of_fame(ctx):
@@ -75,4 +81,10 @@ async def animes_que_tenes_que_ver(ctx):
     randanime = choice(quotes)
     await ctx.send(randanime)
 
+@fran.command(name='fumeteo', help='Fran te da una mano para llegar al cielo')
+async def fumeteo_time(ctx):
+    response = "https://www.youtube.com/watch?v=Wv0OrskppsY"
+    await ctx.send(response)
+
 fran.run(TOKEN)
+
